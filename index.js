@@ -27,7 +27,7 @@ export default class FlipView extends Component {
   static defaultProps = {
     style: {},
     flipDuration: 500,
-    flipEasing: Easing.inOut(Easing.ease),
+    flipEasing: Easing.out(Easing.ease),
     flipAxis: 'y',
     perspective: 1000,
     onFlipped: () => {},
