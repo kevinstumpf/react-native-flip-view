@@ -20,6 +20,7 @@ export default class FlipView extends Component {
     front: PropTypes.object,
     back: PropTypes.object,
     perspective: PropTypes.number,
+    onFlip: PropTypes.func,
     onFlipped: PropTypes.func,
     isFlipped: PropTypes.bool,
   };
@@ -30,6 +31,7 @@ export default class FlipView extends Component {
     flipEasing: Easing.out(Easing.ease),
     flipAxis: 'y',
     perspective: 1000,
+    onFlip: () => {},
     onFlipped: () => {},
     isFlipped: false,
   };
@@ -91,6 +93,8 @@ export default class FlipView extends Component {
   };
 
   flip = () => {
+    this.props.onFlip();
+
     var nextIsFlipped = !this.state.isFlipped;
 
     var {frontOpacity, backOpacity, frontRotation, backRotation} = this._getTargetRenderStateFromFlippedValue(nextIsFlipped);
