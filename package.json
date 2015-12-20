@@ -1,0 +1,27 @@
+{
+  "name": "react-native-flip-view",
+  "version": "1.0.0",
+  "description": "JavaScript implementation of a view container that can flip between its front and back",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DispatcherInc/react-native-flip-view.git"
+  },
+  "keywords": [
+    "react-native",
+    "react-component",
+    "ios",
+    "android",
+    "flip",
+    "view"
+  ],
+  "author": "Kevin Stumpf",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DispatcherInc/react-native-flip-view/issues"
+  },
+  "homepage": "https://github.com/DispatcherInc/react-native-flip-view#readme"
+}
