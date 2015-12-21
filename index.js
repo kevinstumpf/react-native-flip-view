@@ -118,10 +118,6 @@ export default class FlipView extends Component {
       }
     );
   };
-
-  _stepFunctionEasing = (t) => {
-    return Math.round(this.props.flipEasing(t));
-  };
 }
 
 var styles = StyleSheet.create({
