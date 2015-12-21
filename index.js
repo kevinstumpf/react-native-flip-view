@@ -53,8 +53,6 @@ export default class FlipView extends Component {
       backRotationAnimatedValue,
       frontRotation,
       backRotation,
-      frontOpacity: new Animated.Value(targetRenderState.frontOpacity),
-      backOpacity: new Animated.Value(targetRenderState.backOpacity),
       isFlipped: false,
     };
   }
@@ -67,8 +65,6 @@ export default class FlipView extends Component {
 
   _getTargetRenderStateFromFlippedValue = (isFlipped) => {
     return {
-      frontOpacity: isFlipped ? 0 : 1,
-      backOpacity: isFlipped ? 1 : 0,
       frontRotation: isFlipped ? 0.5 : 0,
       backRotation: isFlipped ? 1 : 0.5
     };
@@ -81,11 +77,13 @@ export default class FlipView extends Component {
     return (
       <View {...this.props}>
         <Animated.View
-          style={[styles.flippableView, {opacity: this.state.frontOpacity, transform: [{perspective: this.props.perspective}, {[rotateProperty]: this.state.frontRotation}]}]}>
+          pointerEvents={this.state.isFlipped ? 'none' : 'auto'}
+          style={[styles.flippableView, {transform: [{perspective: this.props.perspective}, {[rotateProperty]: this.state.frontRotation}]}]}>
           {this.props.front}
         </Animated.View>
         <Animated.View
-          style={[styles.flippableView, {opacity: this.state.backOpacity, transform: [{perspective: this.props.perspective}, {[rotateProperty]: this.state.backRotation}]}]}>
+          pointerEvents={this.state.isFlipped ? 'auto' : 'none'}
+          style={[styles.flippableView, {transform: [{perspective: this.props.perspective}, {[rotateProperty]: this.state.backRotation}]}]}>
           {this.props.back}
         </Animated.View>
       </View>
@@ -97,11 +95,9 @@ export default class FlipView extends Component {
 
     var nextIsFlipped = !this.state.isFlipped;
 
-    var {frontOpacity, backOpacity, frontRotation, backRotation} = this._getTargetRenderStateFromFlippedValue(nextIsFlipped);
+    var {frontRotation, backRotation} = this._getTargetRenderStateFromFlippedValue(nextIsFlipped);
 
-    Animated.parallel([this._animateValue(this.state.frontOpacity, frontOpacity, this._stepFunctionEasing),
-      this._animateValue(this.state.backOpacity, backOpacity, this._stepFunctionEasing),
-      this._animateValue(this.state.frontRotationAnimatedValue, frontRotation, this.props.flipEasing),
+    Animated.parallel([this._animateValue(this.state.frontRotationAnimatedValue, frontRotation, this.props.flipEasing),
       this._animateValue(this.state.backRotationAnimatedValue, backRotation, this.props.flipEasing)]
     ).start(k => {
       if (!k.finished) {
@@ -122,10 +118,6 @@ export default class FlipView extends Component {
       }
     );
   };
-
-  _stepFunctionEasing = (t) => {
-    return Math.round(this.props.flipEasing(t));
-  };
 }
 
 var styles = StyleSheet.create({
@@ -135,5 +127,6 @@ var styles = StyleSheet.create({
     top: 0,
     right: 0,
     bottom: 0,
+    backfaceVisibility: 'hidden',
   }
 });
