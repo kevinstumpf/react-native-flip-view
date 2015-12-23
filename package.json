@@ -1,6 +1,6 @@
 {
   "name": "react-native-flip-view",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "JavaScript implementation of a view container that can flip between its front and back",
   "main": "index.js",
   "scripts": {
@@ -17,6 +17,7 @@
     "android",
     "flip",
     "view"
+    "flipview"
   ],
   "author": "Kevin Stumpf",
   "license": "MIT",

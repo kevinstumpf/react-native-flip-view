@@ -53,7 +53,7 @@ export default class FlipView extends Component {
       backRotationAnimatedValue,
       frontRotation,
       backRotation,
-      isFlipped: false,
+      isFlipped: props.isFlipped,
     };
   }
 
