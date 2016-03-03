@@ -11,7 +11,7 @@ var {
   Animated,
   } = React;
 
-export default class FlipView extends Component {
+class FlipView extends Component {
   static propTypes = {
     style: View.propTypes.style,
     flipDuration: PropTypes.number,
@@ -130,3 +130,5 @@ var styles = StyleSheet.create({
     backfaceVisibility: 'hidden',
   }
 });
+
+module.exports = FlipView;
