@@ -97,14 +97,18 @@ class FlipView extends Component {
 
     var {frontRotation, backRotation} = this._getTargetRenderStateFromFlippedValue(nextIsFlipped);
 
-    Animated.parallel([this._animateValue(this.state.frontRotationAnimatedValue, frontRotation, this.props.flipEasing),
-      this._animateValue(this.state.backRotationAnimatedValue, backRotation, this.props.flipEasing)]
-    ).start(k => {
-      if (!k.finished) {
-        return;
-      }
-      this.setState({isFlipped: nextIsFlipped});
-      this.props.onFlipped(nextIsFlipped);
+    setImmediate(() => {
+      requestAnimationFrame(() => {
+        Animated.parallel([this._animateValue(this.state.frontRotationAnimatedValue, frontRotation, this.props.flipEasing),
+          this._animateValue(this.state.backRotationAnimatedValue, backRotation, this.props.flipEasing)]
+        ).start(k => {
+          if (!k.finished) {
+            return;
+          }
+          this.setState({isFlipped: nextIsFlipped});
+          this.props.onFlipped(nextIsFlipped);
+        });
+      });
     });
   };
 
