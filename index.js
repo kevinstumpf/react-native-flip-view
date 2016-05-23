@@ -1,15 +1,18 @@
 'use strict';
 
-var React = require('react-native');
-
+var React = require('react');
 var {
   Component,
-  PropTypes,
+  PropTypes
+} = React;
+
+var ReactNative = require('react-native');
+var {
   View,
   Easing,
   StyleSheet,
   Animated,
-  } = React;
+  } = ReactNative;
 
 class FlipView extends Component {
   static propTypes = {
