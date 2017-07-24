@@ -1,6 +1,6 @@
 'use strict';
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import {
   View,
   Easing,
@@ -8,6 +8,7 @@ import {
   Animated,
   Platform
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 export default class FlipView extends Component {
   static propTypes = {
@@ -174,7 +175,8 @@ export default class FlipView extends Component {
         toValue,
         duration: this.props.flipDuration,
         easing,
-        delay
+        delay,
+        useNativeDriver: true
       });
   }
 
