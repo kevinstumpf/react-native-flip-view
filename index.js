@@ -7,15 +7,17 @@ var {
   Component,
 } = React;
 
-var PropTypes = require('prop-types');
+import PropTypes from 'prop-types';  //add this to make it compatible for latest RN versions
 
 var ReactNative = require('react-native');
 var {
   View,
   Easing,
   StyleSheet,
-  Animated,
+  Animated,ViewPropTypes
   } = ReactNative;
+
+
 
 class FlipView extends Component {
   static propTypes = {
@@ -124,7 +126,8 @@ class FlipView extends Component {
       {
         toValue: toValue,
         duration: this.props.flipDuration,
-        easing: easing
+        easing: easing,
+                useNativeDriver: true
       }
     );
   };
