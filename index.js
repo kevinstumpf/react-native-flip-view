@@ -1,6 +1,5 @@
 'use strict';
 
-import { ViewPropTypes } from 'react-native';
 
 var React = require('react');
 var {
@@ -14,14 +13,14 @@ var {
   View,
   Easing,
   StyleSheet,
-  Animated,ViewPropTypes
+  Animated,
   } = ReactNative;
 
 
 
 class FlipView extends Component {
   static propTypes = {
-    style: ViewPropTypes.style,
+    style:  PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
     flipDuration: PropTypes.number,
     flipEasing: PropTypes.func,
     flipAxis: PropTypes.oneOf(['x', 'y']),
